@@ -1,0 +1,3 @@
+[submodule "Gaembot"]
+	path = Gaembot
+	url = git@github.com:yunikeil/Gaembot.git
