@@ -90,3 +90,7 @@ git pull --force origin
 echo "Пункт 12. Получите все изменения в новом репозитории"
 cd ../domain-driven-hexagon2
 git pull
+
+
+
+
