@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dark Gradient</title>
+    <style>
+        body {
+            background-image: radial-gradient(ellipse at 50% 50%,
+                    #0f4c3a,
+                    #000000);
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            background-size: 400% 400%;
+            animation: gradient 10s ease-in-out infinite;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        div {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div>Web server is working!</div>
+</body>
+
+</html>
