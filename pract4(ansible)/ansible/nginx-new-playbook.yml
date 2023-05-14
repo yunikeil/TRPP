@@ -12,7 +12,7 @@
     apt: 
       name=nginx state=present update_cache=yes 
     when: 
-      ansible_os_family == "Ubuntu" 
+      ansible_os_family == "Debian" 
     notify: 
       - Nginx Systemd 
        
@@ -40,8 +40,7 @@
        
   - name: Generate dynamic HTML from template 
     template:  
-      src=templates/hello.html.j2 dest={{ html_dir }}/hello.
-html owner=root mode=0644 
+      src=templates/hello.html.j2 dest={{ html_dir }}/hello.html owner=root mode=0644 
     notify: Reload Nginx 
        
   handlers: 

@@ -1,18 +1,20 @@
----
-- name: Install Nginx to Webservers
-  hosts: webservers
-  become: yes
-  tasks:
-
-    - name: update
-      apt: update_cache=yes   
-   
-    - name: Install Nginx
-      apt: name=nginx state=latest
-
-      notify:
-        - restart nginx
-
-  handlers:
-    - name: restart nginx
-      service: name=nginx state=reloaded
+--- 
+- name: Install Nginx to Webservers 
+  hosts: webservers 
+  become: yes 
+ 
+  tasks: 
+  - name: Install Nginx 
+    apt: 
+      name=nginx state=present update_cache=yes 
+    when: 
+      ansible_os_family == "Debian" 
+    notify: 
+      - Nginx Systemd 
+ 
+  handlers: 
+  - name: Nginx Systemd 
+    systemd: 
+      name: nginx 
+      enabled: yes 
+      state: started
