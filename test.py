@@ -1,12 +1,16 @@
-from contextlib import contextmanager
 
 
 
-@contextmanager
-def teeemp(var):
-    print(1)
-    yield var
-    print(2)
+class TestClass:
+    abc = 123
 
-with teeemp(1.5) as iamge:
-    print(iamge)
+
+a = TestClass
+b = TestClass
+
+a.abc = 345
+
+print(a.abc)
+print(b.abc)
+
+
