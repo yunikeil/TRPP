@@ -19,7 +19,10 @@ wget "https://raw.githubusercontent.com/yunikeil/TRPP/main/pract3(bash)/part2/ne
 echo "new_requirements started!"
 python3 new_requirements.py
 pip install -r requirements.txt
+pip freeze > check_requirements_installed.txt
 echo "new_requirements finished!"
+
+cd blocknote-master
 
 python3 manage.py makemigrations
 python3 manage.py migrate 
