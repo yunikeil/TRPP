@@ -22,13 +22,25 @@ def process_file(file_path):
         code = f.read()
         for line in code.split("\n"):
             line = line.strip()
-            if line.startswith("import") or line.startswith("from"):
-                tokens = line.split()
-                if len(tokens) > 1:
-                    lib_name = tokens[1]
-                    if "." in lib_name:
-                        lib_name = lib_name.split(".")[0]
-                    unique_libs.add(lib_name)
+            if line.startswith("import"):
+                line = line.split(' ')[1]
+                if '.' not in line:
+                    if line not in unique_libs:
+                        unique_libs.add(line)
+                else:
+                    line = line.split('.')[0]
+                    if line not in unique_libs:
+                        unique_libs.add(line)
+            
+            if line.startswith("from"):
+                line = line.split(' ')[1]
+                if not line.startswith("."):
+                    line = line.split('.')[0]
+                    if line not in unique_libs:
+                        unique_libs.add(line)
+                if '.' not in line:
+                    if line not in unique_libs:
+                        unique_libs.add(line)
 
 def process_directory(directory):
     """

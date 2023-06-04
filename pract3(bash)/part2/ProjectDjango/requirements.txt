@@ -1,0 +1,7 @@
+dotenv
+simple_history
+ckeditor
+tinymce
+main
+django
+pathlib
