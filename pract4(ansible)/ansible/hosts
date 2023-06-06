@@ -1,5 +1,5 @@
 [webservers] 
-server-1 ansible_host=root@37.204.35.18
+server-1 ansible_host=root@5.228.180.104
 server-2 ansible_host=root@37.110.114.244
  
 [webservers:vars] 
