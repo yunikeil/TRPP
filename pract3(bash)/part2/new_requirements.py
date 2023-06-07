@@ -9,26 +9,44 @@ std_lib = sys.modules.keys()
 # список уникальных имен библиотек
 unique_libs = set()
 
+input(
+    "Данный код не работает. Его можно использовать только для первичной проверки зависимостей, дальше придётся всё делать ручками"
+)
+
+
 def process_file(file_path):
     """
     Обрабатывает файл с заданным путем.
     Ищет все имена библиотек в файле и добавляет их в список unique_libs.
     """
     encoding = None
-    with open(file_path, 'rb') as f:
+    with open(file_path, "rb") as f:
         data = f.read()
-        encoding = chardet.detect(data)['encoding']
+        encoding = chardet.detect(data)["encoding"]
     with open(file_path, "r", encoding=encoding) as f:
         code = f.read()
         for line in code.split("\n"):
             line = line.strip()
-            if line.startswith("import") or line.startswith("from"):
-                tokens = line.split()
-                if len(tokens) > 1:
-                    lib_name = tokens[1]
-                    if "." in lib_name:
-                        lib_name = lib_name.split(".")[0]
-                    unique_libs.add(lib_name)
+            if line.startswith("import"):
+                line = line.split(" ")[1]
+                if "." not in line:
+                    if line not in unique_libs:
+                        unique_libs.add(line)
+                else:
+                    line = line.split(".")[0]
+                    if line not in unique_libs:
+                        unique_libs.add(line)
+
+            if line.startswith("from"):
+                line = line.split(" ")[1]
+                if not line.startswith("."):
+                    line = line.split(".")[0]
+                    if line not in unique_libs:
+                        unique_libs.add(line)
+                if "." not in line:
+                    if line not in unique_libs:
+                        unique_libs.add(line)
+
 
 def process_directory(directory):
     """
@@ -40,6 +58,7 @@ def process_directory(directory):
                 file_path = os.path.join(dirpath, filename)
                 process_file(file_path)
 
+
 def write_to_file(libs, filename):
     """
     Записывает список имен библиотек в файл с заданным именем.
@@ -47,6 +66,7 @@ def write_to_file(libs, filename):
     with open(filename, "w") as f:
         for lib in libs:
             f.write(lib + "\n")
+
 
 # получаем относительный путь к папке blocknote-master
 blocknote_dir = os.path.join(os.path.dirname(__file__), "blocknote-master")

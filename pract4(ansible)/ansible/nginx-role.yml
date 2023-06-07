@@ -1,0 +1,8 @@
+--- 
+- name: Install and config Nginx via Role 
+  hosts: webservers 
+  become: yes 
+ 
+  roles: 
+    - nginx-task
+

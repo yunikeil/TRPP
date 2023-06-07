@@ -1,8 +1,0 @@
-
-dotenv
-tinymce
-django
-main
-simple_history
-ckeditor
-pathlib
